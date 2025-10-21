@@ -1,3 +1,4 @@
 resources:
   - deployment.yaml
   - image.yaml
+  - image-update.yaml
