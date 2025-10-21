@@ -14,7 +14,16 @@ spec:
         email: fluxcd@users.noreply.github.com
         name: fluxcd
       messageTemplate: |
-        Automated image update: {{ .Changed.Image.Repository }}:{{ .Changed.Image.Tag }}
+        Automated image update
+      
+        {{ range .Changed.Objects -}}
+        {{ range $resource, $changes := . -}}
+        - {{ $resource.Kind }} {{ $resource.Name }}
+          {{- range $_, $change := $changes }}
+            * {{ $change.OldValue }} -> {{ $change.NewValue }}
+          {{ end -}}
+        {{ end -}}
+        {{ end -}}
     push:
       branch: main
   update:
