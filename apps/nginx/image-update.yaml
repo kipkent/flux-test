@@ -17,7 +17,7 @@ spec:
         name: FluxCD Bot
         email: fluxcd@users.noreply.github.com
       messageTemplate: |
-        Update image to {{ .Updated.Image }}
+        Update image to {{ .Changed.Image.Repository }}:{{ .Changed.Image.Tag }}
     push:
       branch: main
   update:
